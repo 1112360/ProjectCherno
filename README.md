@@ -64,3 +64,25 @@ View and add and changing these line
     	'basePath'=>$protectedPath,
     	'runtimePath' => $runtimePath,
     	.........
+
+
+#4. Other configure that may come in useful
+#a. If sometimes your session start acting really disgusting, 
+#like randomly drop and cannot save session, 
+#that probably because of the yii framework not start the session properly.
+#Find main.php and put these in the head of these things
+
+Recommended way for versions of PHP >= 5.4.0\
+    
+
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+    
+Source: http://www.php.net/manual/en/function.session-status.php
+    
+For versions of PHP < 5.4.0
+
+    if(session_id() == '') {
+        session_start();
+    }
